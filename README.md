@@ -1,29 +1,42 @@
-Experimental implementation of keymap system for Elona foobar
+Proof of concept
+
+Algorithm to map multiple input events to actions.
 
 
-# Terms
+## Terms
 
-Keymap dispatcher
-  has dictionary of keymap and mode
+- Input event
+  - One raw event (e.g., key press, mouse down, etc)
+- Input event sequence
+  - Sequence of input events
+- Input event binding
+  - Input event sequence, action and context
+- Input event map
+  - List of input event bindings
+- Input event handler
+  - Dictionary of input event map and context
+- Action
+  - Unique identifier with arguments
+- Context
+  - Identifier to distinguish each context
+- Context stack
+  - Stack of contexts
 
-Mode
-  TODO
 
-Keymap
-  has list of key bindings
-  has mode
+## Tests
 
-Key binding
-  has key sequence, action, and context
+See `main.cpp` for details.
 
-Key sequence
-  has one of more keys
+Bindings:
 
-Key
-  TODO
+- `x` => action x
+- `x`, `x` => action xx
+- `x`, `y` => action xy
+- `z` => action z
 
-Action
-  has callback
+Input:
 
-Context
-  has predicate
+- `x`, `x` => action xx
+- `x`, `y` => action xy
+- `x`, `z` => action x, action z
+- `x`, timeout => action x
